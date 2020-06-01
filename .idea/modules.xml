@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/SpringBoot_with_redisCache_sentinel.iml" filepath="$PROJECT_DIR$/.idea/SpringBoot_with_redisCache_sentinel.iml" />
-      <module fileurl="file://$PROJECT_DIR$/redis_sentinel/redis_sentinel.iml" filepath="$PROJECT_DIR$/redis_sentinel/redis_sentinel.iml" />
-    </modules>
-  </component>
-</project>
