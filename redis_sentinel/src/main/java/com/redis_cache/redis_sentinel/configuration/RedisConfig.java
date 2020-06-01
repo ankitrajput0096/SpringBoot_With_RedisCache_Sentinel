@@ -1,29 +1,60 @@
 package com.redis_cache.redis_sentinel.configuration;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisSentinelConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.data.redis.support.collections.RedisProperties;
 
+import java.util.HashSet;
+import java.util.List;
+
 @Configuration
+@RequiredArgsConstructor
 public class RedisConfig {
 
-    public final RedisSentinelConfiguration getSentinelConfig() {
+    @Value("${spring.redis.sentinel.master}")
+    private String sentinelMasterName;
 
-        // TODO : Read these values from application properties.
+    @Value("${spring.redis.sentinel.nodes}")
+    private List<String> sentinelNodes;
 
-        RedisSentinelConfiguration sentinelConfig = new RedisSentinelConfiguration()
-                .master("mymaster")
-                .sentinel("127.0.0.1", 10001)
-                .sentinel("127.0.0.1", 10002)
-                .sentinel("127.0.0.1", 10003);
-        return sentinelConfig;
+    @Bean
+    public JedisConnectionFactory redisConnectionFactory() {
+        JedisConnectionFactory redisConnectionFactory = new JedisConnectionFactory(redisSentinelConfiguration());
+        return redisConnectionFactory;
     }
 
     @Bean
-    JedisConnectionFactory jedisConnectionFactory(){
-        return new JedisConnectionFactory(getSentinelConfig());
+    public RedisSentinelConfiguration redisSentinelConfiguration() {
+        return new RedisSentinelConfiguration(sentinelMasterName,new HashSet<String>(sentinelNodes));
     }
+
+    @Bean
+    public RedisTemplate<String, String> redisTemplate() {
+        RedisTemplate<String, String> redisTemplate = new RedisTemplate<>();
+        redisTemplate.setConnectionFactory(redisConnectionFactory());
+        redisTemplate.setKeySerializer(jackson2JsonRedisSerializer());
+        redisTemplate.setValueSerializer(jackson2JsonRedisSerializer());
+        return redisTemplate;
+    }
+
+    @Bean
+    public Jackson2JsonRedisSerializer jackson2JsonRedisSerializer() {
+        return new Jackson2JsonRedisSerializer(String.class);
+    }
+
+    @Bean
+    public ObjectMapper objectMapper() {
+        return new ObjectMapper();
+    }
+
 }

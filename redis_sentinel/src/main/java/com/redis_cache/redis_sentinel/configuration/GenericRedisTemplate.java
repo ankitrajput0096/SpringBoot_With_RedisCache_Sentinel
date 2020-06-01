@@ -1,6 +1,7 @@
 package com.redis_cache.redis_sentinel.configuration;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import org.springframework.stereotype.Component;
 
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -15,5 +16,4 @@ public interface GenericRedisTemplate {
     public String getMap(String redisKey, String key);
     public Map<String, String> getMapAsAll(String redisKey);
     public void deleteMap(String redisKey, String key);
-    public void setExpire(String key, long timeout, TimeUnit unit);
 }

@@ -32,9 +32,9 @@ public class SpringController {
 	@RequestMapping(value="/topics/{id}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<Topic> getRequiredTopic(@PathVariable String id)
 	{
-		Optional<Topic> resultTopic = topicDataManager.getTopic(id);
+		Topic resultTopic = topicDataManager.getTopic(id);
 		if(resultTopic != null) {
-			return new ResponseEntity<Topic>(resultTopic.get(), HttpStatus.FOUND);
+			return new ResponseEntity<Topic>(resultTopic, HttpStatus.FOUND);
 		} else {
 			return new ResponseEntity<Topic>(HttpStatus.NOT_FOUND);
 		}
