@@ -11,6 +11,9 @@ import org.springframework.data.redis.support.collections.RedisProperties;
 public class RedisConfig {
 
     public final RedisSentinelConfiguration getSentinelConfig() {
+
+        // TODO : Read these values from application properties.
+
         RedisSentinelConfiguration sentinelConfig = new RedisSentinelConfiguration()
                 .master("mymaster")
                 .sentinel("127.0.0.1", 10001)
