@@ -57,7 +57,7 @@ Build services
 ```
 docker-compose build
 ```
-running services
+Running services
 ```
 docker-compose up
 ```
@@ -115,7 +115,7 @@ springboot_with_rediscache_sentinel_slave_4            docker-entrypoint.sh redi
 2. Import Postman collection from the `SpringBoot_RedisCache_Sentinel.postman_collection.json` file
 3. Enjoy !!
 
-## NOTE : To see redis cache sentinel cluster in action, observe terminal logs of `docker-compose`. When trying to hit same endpoint multiple times. 
+#### NOTE : To see redis cache sentinel cluster in action, observe terminal logs of `docker-compose`. When trying to hit same endpoint multiple times. 
 
 ## Built With
 
