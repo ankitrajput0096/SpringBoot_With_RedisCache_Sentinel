@@ -50,6 +50,7 @@ The default values of the environment variables for Sentinel are as following
 * SENTINEL_DOWN_AFTER: 5000
 * SENTINEL_FAILOVER: 5000
 
+### NOTE : In this repository, we are using redis Template at DAO(Data access object) layer to use custom implementation of redis cache.
 
 ## Installing and Running
 
