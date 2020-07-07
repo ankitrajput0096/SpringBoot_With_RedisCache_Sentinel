@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ea5d8fd4-490b-490f-8203-b446d77b4875",
+		"_postman_id": "dac3eea5-db91-4603-a5be-f79a4b6297b9",
 		"name": "SpringBoot_RedisCache_Sentinel",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -227,6 +227,125 @@
 					"path": [
 						"simpleController",
 						"helloFriends"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8090/iceCreamController/iceCream/add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":\"ice-cream-one\",\n\t\"iceCreamName\":\"chocolate ice-cream\",\n    \"iceCreamPrice\":20,\n\t\"iceCreamFlavor\":\"chocolate\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8090/iceCreamController/iceCream/add",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"iceCreamController",
+						"iceCream",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8090/iceCreamController/allIceCreams",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8090/iceCreamController/allIceCreams",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"iceCreamController",
+						"allIceCreams"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8090/iceCreamController/iceCream/ice-cream-one",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8090/iceCreamController/iceCream/ice-cream-one",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"iceCreamController",
+						"iceCream",
+						"ice-cream-one"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8090/iceCreamController/iceCream/update/ice-cream-one",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"id\": \"ice-cream-one\",\n        \"iceCreamName\": \"chocolate ice-cream\",\n        \"iceCreamPrice\": 200.0,\n        \"iceCreamFlavor\": \"chocolate\"\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8090/iceCreamController/iceCream/update/ice-cream-one",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"iceCreamController",
+						"iceCream",
+						"update",
+						"ice-cream-one"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8090/iceCreamController/iceCream/delete/ice-cream-one",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8090/iceCreamController/iceCream/delete/ice-cream-one",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"iceCreamController",
+						"iceCream",
+						"delete",
+						"ice-cream-one"
 					]
 				}
 			},

@@ -9,8 +9,9 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /* NOTE :
-1) Explore ValueOperation in redisTemplate
+1) Explore ValueOperation in redisTemplate - Done
 2) Explore ListOperation in redisTemplate
+3) Explore SetOperation in redisTemplate
  */
 
 @Component
