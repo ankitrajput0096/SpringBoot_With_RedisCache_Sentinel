@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value="/simpleController")
 public class SimpleController {
 
-	@RequestMapping(value="/helloFriends",method= RequestMethod.GET, produces = "text/plain")
-	public ResponseEntity<String> helloFriendsMethod()
-	{
+	@RequestMapping(
+			value="/helloFriends",
+			method= RequestMethod.GET,
+			produces = "text/plain")
+	public ResponseEntity<String> helloFriendsMethod() {
 		return ResponseEntity.ok().body("hello friends");
 	}
 }

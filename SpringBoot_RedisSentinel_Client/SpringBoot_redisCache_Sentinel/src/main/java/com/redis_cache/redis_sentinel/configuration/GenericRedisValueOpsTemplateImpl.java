@@ -8,13 +8,15 @@ import org.springframework.stereotype.Component;
 import java.time.Duration;
 
 @Component
-public class GenericRedisValueOpsTemplateImpl implements GenericRedisValueOpsTemplate{
+public class GenericRedisValueOpsTemplateImpl
+        implements GenericRedisValueOpsTemplate{
     private ValueOperations<String, String> valueOperations;
 
     RedisTemplate redisTemplate;
 
     @Autowired
-    public GenericRedisValueOpsTemplateImpl(RedisTemplate redisTemplate){
+    public GenericRedisValueOpsTemplateImpl(
+            RedisTemplate redisTemplate){
         this.redisTemplate = redisTemplate;
         this.valueOperations = this.redisTemplate.opsForValue();
     }

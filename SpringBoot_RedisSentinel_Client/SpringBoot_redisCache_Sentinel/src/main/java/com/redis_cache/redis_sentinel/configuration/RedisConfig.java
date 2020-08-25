@@ -43,9 +43,10 @@ public class RedisConfig {
 
     @Bean(name="jedisConnectionFactory")
     public JedisConnectionFactory jedisConnectionFactory() {
-        JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory(
-                redisSentinelConfiguration(),
-                poolConfig());
+        JedisConnectionFactory jedisConnectionFactory =
+                new JedisConnectionFactory(
+                        redisSentinelConfiguration(),
+                        poolConfig());
         return jedisConnectionFactory;
     }
 
@@ -64,7 +65,8 @@ public class RedisConfig {
 
     @Bean
     public RedisSentinelConfiguration redisSentinelConfiguration() {
-        return new RedisSentinelConfiguration(sentinelMasterName,new HashSet<String>(sentinelNodes));
+        return new RedisSentinelConfiguration(sentinelMasterName,
+                new HashSet<String>(sentinelNodes));
     }
 
     @Bean

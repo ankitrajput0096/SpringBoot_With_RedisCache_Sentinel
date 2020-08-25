@@ -16,9 +16,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class PersistentTopicDataManager implements TopicDataManager {
+public class PersistentTopicDataManager
+		implements TopicDataManager {
 
-	private static final Logger logger = LoggerFactory.getLogger(PersistentTopicDataManager.class);
+	private static final Logger logger =
+			LoggerFactory.getLogger(PersistentTopicDataManager.class);
 
 	private final String topicRedisKey = "TOPIC_TABLE";
 
@@ -38,8 +40,9 @@ public class PersistentTopicDataManager implements TopicDataManager {
 			logger.info("the all topics value is not present in redis cache");
 			List<Topic> allTopics = topicRepository.findAll();
 			try {
-				genericRedisTemplate
-						.putMap(topicRedisKey, "allTopics", this.objectMapper.writeValueAsString(allTopics));
+				genericRedisTemplate.putMap(topicRedisKey,
+						"allTopics",
+						this.objectMapper.writeValueAsString(allTopics));
 			} catch (JsonProcessingException e) {
 				e.printStackTrace();
 			}
@@ -47,8 +50,9 @@ public class PersistentTopicDataManager implements TopicDataManager {
 		} else {
 			logger.info("the all topics value is present in redis cache");
 			try {
-				return this.objectMapper
-						.readValue(genericRedisTemplate.getMap(topicRedisKey, "allTopics"), List.class);
+				return this.objectMapper.readValue(
+						genericRedisTemplate.getMap(topicRedisKey,
+								"allTopics"), List.class);
 			} catch (JsonProcessingException e) {
 				e.printStackTrace();
 			}
@@ -67,8 +71,9 @@ public class PersistentTopicDataManager implements TopicDataManager {
 			}
 			else {
 				try {
-					genericRedisTemplate
-							.putMap(topicRedisKey, id, this.objectMapper.writeValueAsString(topic.get()));
+					genericRedisTemplate.putMap(topicRedisKey,
+							id,
+							this.objectMapper.writeValueAsString(topic.get()));
 				} catch (JsonProcessingException e) {
 					e.printStackTrace();
 				}
@@ -80,7 +85,8 @@ public class PersistentTopicDataManager implements TopicDataManager {
 			Topic topic = null;
 			try {
 				topic = this.objectMapper
-						.readValue(genericRedisTemplate.getMap(topicRedisKey, id), Topic.class);
+						.readValue(genericRedisTemplate.getMap(
+								topicRedisKey, id), Topic.class);
 			} catch (JsonProcessingException e) {
 				e.printStackTrace();
 			}
@@ -140,7 +146,8 @@ public class PersistentTopicDataManager implements TopicDataManager {
 			else {
 				try {
 					genericRedisTemplate
-							.putMap(topicRedisKey, id, this.objectMapper.writeValueAsString(topic));
+							.putMap(topicRedisKey, id, this.objectMapper
+									.writeValueAsString(topic));
 				} catch (JsonProcessingException e) {
 					e.printStackTrace();
 				}
@@ -151,7 +158,8 @@ public class PersistentTopicDataManager implements TopicDataManager {
 			Topic topic = null;
 			try {
 				topic = this.objectMapper
-						.readValue(genericRedisTemplate.getMap(topicRedisKey, id), Topic.class);
+						.readValue(genericRedisTemplate.getMap(
+								topicRedisKey, id), Topic.class);
 			} catch (JsonProcessingException e) {
 				e.printStackTrace();
 			}
@@ -163,7 +171,8 @@ public class PersistentTopicDataManager implements TopicDataManager {
 	{
 		logger.info("finding topic record by id and name");
 		if(genericRedisTemplate.getMap(topicRedisKey, id+"_"+name) == null) {
-			logger.info("the topic is not present in redis cache found by id and name");
+			logger.info("the topic is not present in redis cache " +
+					"found by id and name");
 			Topic topic = topicRepository.getByIdAndName(id, name);
 			if(topic == null) {
 				genericRedisTemplate
@@ -172,18 +181,21 @@ public class PersistentTopicDataManager implements TopicDataManager {
 			else {
 				try {
 					genericRedisTemplate
-							.putMap(topicRedisKey, id+"_"+name, this.objectMapper.writeValueAsString(topic));
+							.putMap(topicRedisKey, id+"_"+name,
+									this.objectMapper.writeValueAsString(topic));
 				} catch (JsonProcessingException e) {
 					e.printStackTrace();
 				}
 			}
 			return topic;
 		} else {
-			logger.info("the topic found by id and name is present in redis cache");
+			logger.info("the topic found by id and name " +
+					"is present in redis cache");
 			Topic topic = null;
 			try {
 				topic = this.objectMapper
-						.readValue(genericRedisTemplate.getMap(topicRedisKey, id+"_"+name), Topic.class);
+						.readValue(genericRedisTemplate.getMap(
+								topicRedisKey, id+"_"+name), Topic.class);
 			} catch (JsonProcessingException e) {
 				e.printStackTrace();
 			}
